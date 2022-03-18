@@ -1,0 +1,11 @@
+{% extends 'shared/layout.html' %}
+{% block title %} success{% endblock %}
+{% block content %}
+<div style="width:100%;height:500px">
+    <p style="text-align: center">اشکالی رخ داده</p>
+    <a style="text-align: center" href={% url 'home_page' %} >
+        <p>برای بازگشت به صفحه اصلی کلیک کنید</p>
+    </a>
+    <img src="/static/images/New/error-icon-25243.png" alt="success image" style="width: 20%;height: 40%;position: relative; right: 40%;top: 10%">
+</div>
+{% endblock %}

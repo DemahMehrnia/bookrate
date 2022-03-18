@@ -1,0 +1,45 @@
+{% extends 'shared/layout.html' %}
+{% block title %} blogs{% endblock %}
+
+{% block content %}
+<section>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm-9">
+					<div class="blog-post-area">
+						<h2 class="title text-center">{{ what }}</h2>
+                        {% for blog in blogs %}
+						<div class="single-blog-post">
+							<h3>{{ blog.title }}</h3>
+							<div class="post-meta">
+								<ul>
+									<li><i class="fa fa-user"></i>{{ blog.author }}</li>
+									<li><i class="fa fa-calendar"></i> {{ blog.created_at }}</li>
+                                           <li>لایک ها:{{ blog.likes.count}}</li>
+                                    <li>دیس لایک ها:{{ blog.dislike.count}}</li>
+								</ul>
+							</div>
+							<a href={% url 'blogsdetail' blog.slug %}>
+								<img style="width: 862px;height: 398px" src="{{ blog.image.url }}" alt="">
+							</a>
+							<p>{{ blog.short_description }}</p>
+							<a href={% url 'blogsdetail' blog.slug %} class="btn btn-primary" href="">ادامـه مطلب</a>
+						</div>
+                            {% endfor %}
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<div class="shipping text-center"><!--shipping-->
+							<img src="/static/images/New/17.jpg" alt="" />
+						</div><!--/shipping-->
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+{% endblock %}

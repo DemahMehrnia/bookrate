@@ -1,0 +1,14 @@
+{% extends 'shared/layout.html' %}
+{% block title %} success{% endblock %}
+{% block content %}
+<div style="width:100%;height:500px">
+    <p style="text-align: center">اکانت شما با موفقیت ایجاد شد</p>
+    <img src="/static/images/New/yes.png" alt="success image" style="width: 20%;height: 40%;position: relative; right: 40%;top: 10%">
+    <br><br><br>
+    <p style="text-align: center">لطقا روی لینکی که به ایمیلتان ارسال شده کلیک کنید تا اکانتتتان تایید شود</p>
+    <a style="text-align: center" href={% url 'loginpage' %} >
+        <p>برای رفتن به صفحه ورود با اکانتتان کلیک کنید</p>
+    </a>
+
+</div>
+{% endblock %}

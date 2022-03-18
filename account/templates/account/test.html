@@ -1,0 +1,142 @@
+
+
+{% extends 'shared/layout.html' %}
+{% block title %} home{% endblock %}
+{% block content %}
+    <section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href={% url 'home_page' %}>خانـه</a></li>
+				</ol>
+			</div><!--/breadcrums-->
+        </div>
+    </section>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 padding-right">
+					<div class="features_items"><!--RetailSale_items-->
+						<a href="shop-2.html"><h2 class="title text-center"> اخرین مقاله های شما</h2></a>
+						<div id="new-item-carousel" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner">
+						<div class="item active">
+                            {% for blog in blogs %}
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="{{blog.image.url}}" alt="" style="height: 268px;width: 250px"  />
+												<h2>{{ blog.title }}</h2>
+
+												<a href="#" class="btn btn-default add-to-cart"><i></i>ویرایش</a>
+											</div>
+											<div class="product-overlay">
+												<div class="overlay-content">
+													<h2>{{ blog.title }}</h2>
+													<a href="#" class="btn btn-default add-to-cart"><i></i>ویرایش</a>
+												</div>
+											</div>
+									</div>
+									<div class="choose">
+										<ul class="nav nav-pills nav-justified">
+											<li>
+												<a href="#">
+													<i></i>لایک ها
+												</a>
+											</li>
+											<li><a href="#"><i></i>دیس لایک ها</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+                            {% endfor %}
+						</div>
+				    </div>
+
+			    </div>
+		    </div>
+        <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 padding-right">
+                        <div class="features_items"><!--RetailSale_items-->
+                            <a href="shop-2.html"><h2 class="title text-center">کتاب های خوانده شده</h2></a>
+                            <div id="new-item-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="/static/images/home/product.jpg" alt="" />
+                                                    <h2>موضوع</h2>
+
+                                                    <a href="#" class="btn btn-default add-to-cart"><i></i>ویرایش</a>
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>موضوع</h2>
+                                                        <a href="#" class="btn btn-default add-to-cart"><i></i>ویرایش</a>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="choose">
+                                            <ul class="nav nav-pills nav-justified">
+                                                <li>
+                                                    <a href="#">
+                                                        <i></i>لایک ها
+                                                    </a>
+                                                </li>
+                                                <li><a href="#"><i></i>دیس لایک ها</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+<a href="bafsb/asdfasfdaf">
+    <img src="/static/images/New/allblogs.PNG" alt=""   />
+  </a>
+                </div>
+        <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 padding-right">
+                        <div class="features_items"><!--RetailSale_items-->
+                            <a href="shop-2.html"><h2 class="title text-center">کتاب های در حال خواندن</h2></a>
+                            <div id="new-item-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="/static/images/home/product.jpg" alt="" />
+                                                    <h2>موضوع</h2>
+
+                                                    <a href="#" class="btn btn-default add-to-cart"><i></i>ویرایش</a>
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>موضوع</h2>
+                                                        <a href="#" class="btn btn-default add-to-cart"><i></i>ویرایش</a>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="choose">
+                                            <ul class="nav nav-pills nav-justified">
+                                                <li>
+                                                    <a href="#">
+                                                        <i></i>لایک ها
+                                                    </a>
+                                                </li>
+                                                <li><a href="#"><i></i>دیس لایک ها</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+        </div>
+   </section>
+{% endblock %}

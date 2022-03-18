@@ -1,0 +1,11 @@
+{% extends 'shared/layout.html' %}
+{% block title %} success{% endblock %}
+{% block content %}
+<div style="width:100%;height:500px">
+    <p style="text-align: center">اکانت شما با موفقیت تایید شد</p>
+    <a style="text-align: center" href={% url 'loginpage' %} >
+        <p>برای بازگشت به صفحه ورود کلیک کنید</p>
+    </a>
+    <img src="/static/images/New/yes.png" alt="success image" style="width: 20%;height: 40%;position: relative; right: 40%;top: 10%">
+</div>
+{% endblock %}

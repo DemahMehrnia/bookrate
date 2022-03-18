@@ -1,0 +1,56 @@
+{% extends 'shared/layout.html' %}
+{% block title %} User Panel{% endblock %}
+{% block content %}
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 padding-right">
+					<div class="features_items"><!--RetailSale_items-->
+					{% if st == 'myblogs'%}
+						<a href="shop-2.html"><h2 class="title text-center"> مقاله های شما</h2></a>
+						{% elif st == 'myreadingbooks' %}
+								<a href="shop-2.html"><h2 class="title text-center">کتاب هایی که حتما می خوانید</h2></a>
+						{% elif st == 'myreadedbook' %}
+								<a href="shop-2.html"><h2 class="title text-center">کتاب های خوانده شده</h2></a>
+						{% endif %}
+						<div id="new-item-carousel" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner">
+						<div class="item active">
+                            {% for blog in forshow %}
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="{{blog.image.url}}" alt="" style="height: 268px;width: 250px"  />
+												<h2>{{ blog.title }}</h2>
+
+												<a href="#" class="btn btn-default add-to-cart"><i></i>ویرایش</a>
+											</div>
+											<div class="product-overlay">
+												<div class="overlay-content">
+                                                    <a href="#"><h2>{{ blog.title }}</h2></a>
+													<a href="#" class="btn btn-default add-to-cart"><i></i>ویرایش</a>
+												</div>
+											</div>
+									</div>
+									<div class="choose">
+										<ul class="nav nav-pills nav-justified">
+											<li>
+												<a href="">
+													<i></i>لایک ها:{{ blog.likes.count }}
+												</a>
+											</li>
+											<li><a href="#"><i></i>دیس لایک ها:{{ blog.dislike.count }}</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+                            {% endfor %}
+						</div>
+				    </div>
+
+			    </div>
+
+        </div>
+   </section>
+{% endblock %}

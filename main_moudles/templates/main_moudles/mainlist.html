@@ -1,0 +1,212 @@
+{% extends 'shared/layout.html' %}
+{% block title %}
+بوکا{% endblock %}
+{% block content %}
+    <section id="slider"><!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#slider-carousel" data-slide-to="1"></li>
+						</ol>
+
+						<div class="carousel-inner">
+
+							<div class="item active">
+								<div class="col-sm-6">
+									<h1><span>بوکا</span></h1>
+									<h2>کافه انلاین کتاب</h2>
+									<p>محفلی برای بحث و رتبه بندی کتاب ها</p>
+                                    <a href={% url 'aboutbooka' %}><button type="button" class="btn btn-default get">بیشتر بدانید</button></a>
+								</div>
+								<div class="col-sm-6">
+									{% comment %}<img src="/static/images/home/girl2.jpg"  alt="" />{% endcomment %}
+                                    <img style="height:100%;width: 100%;max-height:400px;max-width: 400px;min-height: 200px;min-width: 200px" src="/static/images/New/booka.png"  alt="" />
+								</div>
+							</div>
+
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>بوکا</span></h1>
+									<h2>چگونه درست شد؟</h2>
+									<p>صفر تا صد از ایده تا درست کردن سایت بوکا</p>
+									<a href={% url 'bookaztoh' %}><button type="button" class="btn btn-default get">بیشتر بدانید</button></a>
+								</div>
+								<div class="col-sm-6" >
+									<img style="height:100%;width: 100%;max-height:400px;max-width: 400px;min-height: 200px;min-width: 200px" src="/static/images/New/16420231.jpg"  alt="" />
+
+								</div>
+							</div>
+
+						</div>
+                        <br><br>
+						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->
+
+	<section>
+		<div class="container">
+			<div class="row">
+
+				<div class="recommended_items"><!--NewProduct_items-->
+						<h2 class="title text-center">محبوب ترین کتاب ها</h2>
+
+						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+								<div class="item active">
+                                   {% for book in books %}
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img style="height: 268px;width: 250px" src="{{book.image.url}}" alt="" />
+										<h2>{{ book.title }}</h2>
+										<p>{{ book.author }}</p>
+										<a href={% url 'bookdetail' book.slug %} class="btn btn-default add-to-cart"><i class></i>مشاهده</a>
+									</div>
+									<div class="product-overlay">
+										<div class="overlay-content">
+											<h2>{{ book.title }}</h2>
+											<p>{{ book.author }}</p>
+											<a href={% url 'bookdetail' book.slug %} class="btn btn-default add-to-cart"><i ></i>مشاهده</a>
+										</div>
+									</div>
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+                                     {% if user in book.reading.all %}
+                                             <li><p style="color: green" href=""><i></i>به زودی میخوانند:{{book.reading.count}}</p></li>
+                                            {% else %}
+                                           <li><p href=""><i></i>به زودی میخوانند:{{book.reading.count}}</p></li>
+                                        {% endif %}
+                                        {% if user in book.readed.all %}
+                                             <li><p style="color: green" href=""><i></i>خوانده شده:{{ book.readed.count }}</p></li>
+                                            {% else %}
+                                           <li><p href=""><i></i>لاخوانده شده:{{ book.readed.count }}</p></li>
+                                        {% endif %}
+									</ul>
+								</div>
+                            <div class="choose">
+									<ul class="nav nav-pills nav-justified">
+                                        {% if user in book.likes.all %}
+                                             <li><p style="color: green" href=""><i></i>لایک:{{ book.likes.count }}</p></li>
+                                            {% else %}
+                                           <li><p href=""><i></i>لایک:{{ book.likes.count }}</p></li>
+                                        {% endif %}
+                                        {% if user in book.dislike.all %}
+										<li><p style="color: red" href=""><i></i>دیس لایک:{{ book.dislike.count }}</p></li>
+                                        {% else %}
+                                            <li><p href=""><i></i>دیس لایک:{{ book.dislike.count }}</p></li>
+                                        {% endif %}
+									</ul>
+								</div>
+							</div>
+						</div>
+                     {%endfor%}
+								</div>
+							</div>
+
+						</div>
+					</div><!--/NewProduct_items-->
+
+				<div class="col-sm-12 padding-right">
+					<div class="features_items"><!--RetailSale_items-->
+						<a href={% url 'blogshow' 'top' %}><h2 class="title text-center">مقاله های محبوب</h2></a>
+						<div id="new-item-carousel" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner">
+						<div class="item active">
+				 {% for blog in blogs %}
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="{{blog.image.url}}" alt="" style="height: 268px;width: 250px"  />
+												<h2>{{ blog.title }}</h2>
+
+												<a href={% url 'blogsdetail' blog.slug %} class="btn btn-default add-to-cart"><i></i>مشاهده</a>
+											</div>
+											<div class="product-overlay">
+												<div class="overlay-content">
+                                                    <a href="#"><h2>{{ blog.title }}</h2></a>
+													<a href={% url 'blogsdetail' blog.slug %} class="btn btn-default add-to-cart"><i></i>مشاهده</a>
+												</div>
+											</div>
+									</div>
+									<div class="choose">
+										<ul class="nav nav-pills nav-justified">
+
+											<li>
+												<a href="">
+													<i></i>لایک ها:{{ blog.likes.count }}
+												</a>
+											</li>
+											<li><a href="#"><i></i>دیس لایک ها:{{ blog.dislike.count }}</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+                            {% endfor %}
+						</div>
+					</div>
+					</div>
+					</div><!--RetailSale_items-->
+
+
+					<div class="features_items"><!--WholeSale_items-->
+						<a href={% url 'blogshow' 'newest' %}><h2 class="title text-center">جدید ترین مقاله ها</h2></a>
+						<div id="major-item-carousel" class="carousel slide" data-ride="carousel">
+						<div class="carousel-inner">
+						<div class="item active">
+						 {% for blog in blogg %}
+							<div class="col-sm-3">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="{{blog.image.url}}" alt="" style="height: 268px;width: 250px"  />
+												<h2>{{ blog.title }}</h2>
+
+												<a href={% url 'blogsdetail' blog.slug %} class="btn btn-default add-to-cart"><i></i>مشاهده</a>
+											</div>
+											<div class="product-overlay">
+												<div class="overlay-content">
+                                                    <a href="#"><h2>{{ blog.title }}</h2></a>
+													<a href={% url 'blogsdetail' blog.slug %} class="btn btn-default add-to-cart"><i></i>مشاهده</a>
+												</div>
+											</div>
+									</div>
+									<div class="choose">
+										<ul class="nav nav-pills nav-justified">
+											<li>
+												<a href="">
+													<i></i>لایک ها:{{ blog.likes.count }}
+												</a>
+											</li>
+											<li><a href="#"><i></i>دیس لایک ها:{{ blog.dislike.count }}</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+                            {% endfor %}
+					</div>
+					</div>
+					</div><!--WholeSale_items-->
+				</div>
+				</div>
+````
+			</div>
+		</div>
+	</section>
+
+{% endblock %}
+

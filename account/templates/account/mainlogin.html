@@ -1,0 +1,57 @@
+{% extends 'shared/layout.html' %}
+{% block title %}
+    Login in
+{% endblock %}
+{% block content %}
+    <div class="container">
+		<section id="form"><!--form-->
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+                        {% if from == True %}
+                                                <P>برای ورود به این بخش ابتدا باید وارد اکانت خود شوید</P>
+                        {% endif %}
+					<div class="login-form"><!--login form-->
+						<h2>ورود به حساب کاربـری :</h2>
+						<form action="#">
+                                 <button type="submit" class="btn btn-default">
+                                    <a style="color: white" href={% url 'loginpage' %}>
+                                        ورود
+                                    </a>
+                                </button>
+
+
+						</form>
+					</div><!--/login form-->
+				</div>
+				<div class="col-sm-1">
+					<h2 class="or">یا</h2>
+				</div>
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h2>ثبت نام کاربـر جدیـد</h2>
+						<form action="#">
+
+                                 <button type="submit" class="btn btn-default">
+                                    <a style="color: white" href={% url 'signinpage' %}>
+                                        ثبت نام
+                                    </a>
+                                </button>
+
+
+
+
+
+
+
+
+						</form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</section>
+	</div>
+	<!--/form-->
+	
+	
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'shared/layout.html' %}
+{% load crispy_forms_tags %}
+{% block title %} add blog{% endblock %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div>
+        <input type="submit" name="submit" class="btn btn-primary pull-right" value="ارسـال">
+    </div>
+    </form>
+    <br><br><br>
+{% endblock %}

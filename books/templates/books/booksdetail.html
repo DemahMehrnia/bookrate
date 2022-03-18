@@ -1,0 +1,228 @@
+{% extends 'shared/layout.html' %}
+{% block title %} detail{% endblock %}
+{% block content %}
+<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-9 padding-right">
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5">
+							<div class="view-product">
+								<img src="{{ book.image.url }}" alt="" />
+							</div>
+						</div>
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+								<div>
+									<span>
+										<span>{{ book.title }}</span>
+									</span>
+                                    <br>
+									<span>
+										<h3>
+                                            نویسنده :<a style="color: #A05607" href="">{{ book.author }}</a>
+                                        </h3>
+                                               <li>لایک ها:{{ book.likes.count}}</li>
+                                                 <li>دیس لایک ها:{{ book.dislike.count}}</li>
+                                        <li>حتما میخوانند:{{ book.reading.count}}</li>
+                                    <li>خوانده اند:{{ book.readed.count}}</li>
+                                        
+
+									</span>
+								</div>
+								<div>
+                                    <p><b>طبقه بندی :</b> {{ book.category.all.first }}</p>
+                                    <br>
+									<p><b>توضیحات :</b> {{ book.short_description }}</p>
+								</div>
+								<span  class="socials-share share">
+									<ul>
+                                            {% if user in book.likes.all %}
+										<a href={% url 'booklike' book.slug %}>
+											<li>
+												<label>لایک</label>
+												<img style="width: 20px;height: 20px" src="/static/images/New/greenlike.png"/>
+											</li>
+										</a>
+                                        {% else %}
+                                        <a href={% url 'booklike' book.slug %}>
+											<li>
+												<label>لایک</label>
+												<img style="width: 20px;height: 20px" src="/static/images/New/blacklike.png"/>
+											</li>
+										</a>
+                                        {% endif %}
+										{% if user in book.dislike.all %}
+										<a href={% url 'bookdislike' book.slug %}>
+											<li>
+												<label>دیس لایک</label>
+												<img style="width: 20px;height: 20px" src="/static/images/New/reddislike.png"/>
+											</li>
+										</a>
+                                        {% else %}
+                                            <a href={% url 'bookdislike' book.slug %}>
+											<li>
+												<label>دیس لایک</label>
+												<img style="width: 20px;height: 20px" src="/static/images/New/blackdislike.png"/>
+											</li>
+										</a>
+                                        {% endif %}
+                                    {% if user in book.readed.all %}
+										<a href={% url 'bookreaded' book.slug %}>
+											<li>
+												<label style="color: green">خواندم</label>
+												<img style="width: 25px;height: 25px" src="/static/images/New/Hamed.png"/>
+											</li>
+										</a>
+                                        {% else %}
+                                            <a href={% url 'bookreaded' book.slug %}>
+											<li>
+												<label>خواندم</label>
+												<img style="width: 25px;height: 25px" src="/static/images/New/HAmed.png"/>
+											</li>
+										</a>
+                                        {% endif %}
+                                         {% if user in book.reading.all %}
+										<a href={% url 'bookreading' book.slug %}>
+											<li>
+												<label style="color: green">حتما میخوانم</label>
+												<img style="width: 25px;height: 25px" src="/static/images/New/hamed%2002.png"/>
+											</li>
+										</a>
+                                        {% else %}
+                                            <a href={% url 'bookreading' book.slug %}>
+											<li>
+												<label>حتما میخوانم</label>
+												<img style="width: 25px;height: 25px" src="/static/images/New/hamed%2002.png"/>
+											</li>
+										</a>
+                                        {% endif %}
+
+									</ul>
+								</span>
+
+							</div><!--/product-information-->
+						</div>
+					</div><!--/product-details-->
+                    <div class="recommended_items"><!--recommended_items-->
+						<h2 class="title text-center">کتاب های پیشنهادی</h2>
+
+						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+								<div class="item active">
+                                    {% for book in books %}
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img style="height: 268px;width: 250px" src="{{book.image.url}}" alt="" />
+										<h2>{{ book.title }}</h2>
+										<p>{{ book.author }}</p>
+										<a href={% url 'bookdetail' book.slug %} class="btn btn-default add-to-cart"><i class></i>مشاهده</a>
+									</div>
+									<div class="product-overlay">
+										<div class="overlay-content">
+											<h2>{{ book.title }}</h2>
+											<p>{{ book.author }}</p>
+											<a href={% url 'bookdetail' book.slug %} class="btn btn-default add-to-cart"><i ></i>مشاهده</a>
+										</div>
+									</div>
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+                                     {% if user in book.reading.all %}
+                                             <li><p style="color: green" href=""><i></i>به زودی میخوانند:{{book.reading.count}}</p></li>
+                                            {% else %}
+                                           <li><p href=""><i></i>به زودی میخوانند:{{book.reading.count}}</p></li>
+                                        {% endif %}
+                                        {% if user in book.readed.all %}
+                                             <li><p style="color: green" href=""><i></i>خوانده شده:{{ book.readed.count }}</p></li>
+                                            {% else %}
+                                           <li><p href=""><i></i>لاخوانده شده:{{ book.readed.count }}</p></li>
+                                        {% endif %}
+									</ul>
+								</div>
+                            <div class="choose">
+									<ul class="nav nav-pills nav-justified">
+                                        {% if user in book.likes.all %}
+                                             <li><p style="color: green" href=""><i></i>لایک:{{ book.likes.count }}</p></li>
+                                            {% else %}
+                                           <li><p href=""><i></i>لایک:{{ book.likes.count }}</p></li>
+                                        {% endif %}
+                                        {% if user in book.dislike.all %}
+										<li><p style="color: red" href=""><i></i>دیس لایک:{{ book.dislike.count }}</p></li>
+                                        {% else %}
+                                            <li><p href=""><i></i>دیس لایک:{{ book.dislike.count }}</p></li>
+                                        {% endif %}
+									</ul>
+								</div>
+							</div>
+						</div>
+                     {%endfor%}
+								</div>
+							</div>
+						</div>
+					</div><!--/recommended_items-->
+
+					<div class="category-tab shop-details-tab"><!--category-tab-->
+						<div class="col-sm-12">
+							<ul class="nav nav-tabs">
+								<li><a href="#details" data-toggle="tab">ثبت نظر</a></li>
+								<li class="active"><a href="#reviews" data-toggle="tab">نظرات ({{book.bookcoments.count}})</a></li>
+							</ul>
+						</div>
+						<div class="tab-content">
+							<div class="tab-pane fade" id="details" >
+
+								<form  method="post">
+									{% csrf_token %}
+									{{comentform}}
+									 <input type="submit" name="submit" class="btn btn-primary pull-right" value="ارسـال">
+								</form>
+							</div>
+
+
+							<div class="tab-pane fade active in" id="reviews" >
+
+								<div class="col-sm-12">
+									{% for coment in coments %}
+									<ul>
+										<li><a href=""><i class="fa fa-user"></i>{{coment.comentuser }}</a></li>
+										<li><a href=""><i class="fa fa-calendar-o"></i>{{coment.created_at}}</a></li>
+									</ul>
+									<p>{{ coment.content}}</p>
+											{% endfor %}
+								</div>
+							</div>
+
+						</div>
+					</div><!--/category-tab-->
+				</div>
+
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						</div><!--/category-productsr-->
+
+						<div class="brands_products"><!--brands_products-->
+							<h2>دسته بندی کتاب ها</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+                                    {% for cat in bookcategory %}
+									<li><a href={% url 'bookshome' cat.slug %}> <span class="pull-left">{{ cat.bookcat.count }}</span>{{ cat.title }}</a></li>
+									{% endfor %}
+								</ul>
+							</div>
+						</div><!--/brands_products-->
+
+						<div class="shipping text-center"><!--shipping-->
+							<img src="/static/images/New/17.jpg" alt="" />
+						</div><!--/shipping-->
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</section>
+{% endblock %}

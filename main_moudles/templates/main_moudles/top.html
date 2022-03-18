@@ -1,0 +1,72 @@
+{% extends 'shared/layout.html' %}
+{% block title %} topusers{% endblock %}
+{% block content %}
+
+
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>لیست نفرات برتر</h2>
+
+<table>
+  <tr>
+      <th>امتیاز</th>
+    <th>نام کاربری</th>
+      <th>رتبه</th>
+    </tr>
+{% for top in tops %}
+
+  <tr>
+    <td>{{ top.rate }}</td>
+    <td>{{ top.username }}</td>
+    <td>{{ top.ratefind }}</td>
+    </tr>
+{% endfor %}
+<tr>
+    <td>.</td>
+    <td>.</td>
+     <td>.</td>
+    </tr>
+ <tr>
+     <tr>
+    <td>.</td>
+    <td>.</td>
+     <td>.</td>
+    </tr>
+ <tr>
+     <tr>
+    <td>.</td>
+    <td>.</td>
+     <td>.</td>
+    </tr>
+
+
+
+    <td style="color: blue">{{ user.rate }}</td>
+    <td style="color: blue">{{ user.username }}</td>
+     <td style="color: blue">{{ user.ratefind }}</td>
+    </tr>
+</table>
+<br><br>
+
+    <p>بوکا قصد دارد به نفرات برتر هر ماه از لحاظ امتیاز که از جمع لایک های مقاله هایش منهای دیسلایک های مقاله اش به دست می اید جوایزی اهدا کند!</p>
+    <p>ما در حال کار روی این طرح هستیم و به زودی این طرح با جوایز نفیس اجرا خواهد شد.</p>
+{% endblock %}
